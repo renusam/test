@@ -1,0 +1,15 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+First Block
+<<Block1>>=
+1+2
+@
+
+Next Block
+<<Block2>>=
+5+3
+@
+
+\end{document}
