@@ -1,0 +1,68 @@
+---
+title: "K-Means Clustering Example"
+author: "Renu Mary Daniel"
+date: "01/04/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## Loading Data and Packages   
+
+```{r load}
+library(cluster.datasets)
+data("all.mammals.milk.1956")
+head(all.mammals.milk.1956)
+```
+
+## Checking data provenance   
+
+```{r prov}
+library(digest)
+h1<-"f4ff686f92c89e326a6360ac920a06a014ef35c1"
+paste('checked at',date())
+df<-all.mammals.milk.1956
+h2<-digest(as.character(df),algo="sha1")
+stopifnot(identical(h1, h2))
+```
+Execution continues since both the hashes are equivalent.
+
+## Preparing Data for Clustering
+
+Producing reproducible work using set.seed()
+```{r reprod,eval=T}
+set.seed(123)
+input<-all.mammals.milk.1956[,2:6]
+head(input)
+```
+
+## Applying K-means clustering
+```{r clust}
+library(cluster)
+clus<-kmeans(input,centers=3,nstart=20)
+clus
+```
+
+Here, we have k-means clustering with 3 clusters and 20 initial random starts  
+
+## Visualizing the optimal number of clusters
+```{r visual1}
+library(factoextra)
+fviz_nbclust(input,kmeans,method="wss")
+```
+
+It is obvious from the plot that the within cluster sums of squares is optimal at value 4  
+
+## Visualizing the clusters  
+
+```{r visual2}
+fviz_cluster(clus,data=input) #fviz_cluster helps in visulization 
+```
+  
+## Saving the Workspace
+```{r save,echo=T,eval=T,cache=F,message=F}
+save(list = ls(all.names = TRUE), file = "SampleSpace.RData", envir = .GlobalEnv)
+fname="SampleSpace.RData"
+message(paste('saved',fname)) # message to running R console
+print(paste('saved',fname)) # print to document
+```
