@@ -48,12 +48,12 @@ Here, we have k-means clustering with 3 clusters and 20 initial random starts
 ## Visualizing the optimal number of clusters
 ```{r visual1}
 library(factoextra)
-fviz_nbclust(input,kmeans,method="wss")
+fviz_nbclust(input,kmeans,method="silhouette")
 ```
 
 It is obvious from the plot that the within cluster sums of squares is optimal at value 4  
 
-## Visualizing the clusters  
+## Visualizing the clusters 
 
 ```{r visual2}
 fviz_cluster(clus,data=input) #fviz_cluster helps in visulization of clusters 
