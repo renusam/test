@@ -56,7 +56,7 @@ It is obvious from the plot that the within cluster sums of squares is optimal a
 ## Visualizing the clusters  
 
 ```{r visual2}
-fviz_cluster(clus,data=input) #fviz_cluster helps in visulization 
+fviz_cluster(clus,data=input) #fviz_cluster helps in visulization of clusters 
 ```
   
 ## Saving the Workspace
